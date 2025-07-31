@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://so64shiimadd"]
+
+[ext_resource type="Script" path="res://gameplay_loop.gd" id="1_75jyd"]
+[ext_resource type="Texture2D" path="res://tempback.jpg" id="1_dhugl"]
+[ext_resource type="Texture2D" uid="uid://dnkkqsbbfw0wo" path="res://Art/idle1.png" id="2_3qf27"]
+[ext_resource type="Texture2D" uid="uid://c536a1m31hie7" path="res://Art/new.png" id="4_7nkap"]
+[ext_resource type="Texture2D" uid="uid://durbqquufuvvn" path="res://Art/hit1.png" id="4_uqmfv"]
+[ext_resource type="Texture2D" uid="uid://c11p0t51g6r3t" path="res://Art/old.png" id="5_2u5sd"]
+[ext_resource type="Script" path="res://statemachine.gd" id="7_tumbo"]
+[ext_resource type="Script" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="8_p6ocr"]
+[ext_resource type="Script" path="res://wordGen.gd" id="9_8b3rg"]
+[ext_resource type="FontFile" uid="uid://c62vx0kgsyvk4" path="res://Manjari-Regular.ttf" id="10_n8gb1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m6qbm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3qf27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uqmfv")
+}],
+"loop": false,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7nkap")
+}],
+"loop": false,
+"name": &"new",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_2u5sd")
+}],
+"loop": false,
+"name": &"old",
+"speed": 4.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c6elb"]
+font = ExtResource("10_n8gb1")
+font_size = 50
+outline_size = 2
+
+[node name="Gameplay Loop" type="Node2D"]
+script = ExtResource("1_75jyd")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(512, 384)
+texture = ExtResource("1_dhugl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(845, 463)
+scale = Vector2(1.12434, 1.20498)
+sprite_frames = SubResource("SpriteFrames_m6qbm")
+animation = &"old"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+
+[node name="statemachine" type="Node" parent="AnimatedSprite2D"]
+script = ExtResource("7_tumbo")
+
+[node name="idle" type="Node" parent="AnimatedSprite2D/statemachine"]
+
+[node name="new" type="Node" parent="AnimatedSprite2D/statemachine"]
+
+[node name="old" type="Node" parent="AnimatedSprite2D/statemachine"]
+
+[node name="RhythmNotifier" type="Node" parent="."]
+script = ExtResource("8_p6ocr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="word generator" type="Node2D" parent="."]
+script = ExtResource("9_8b3rg")
+
+[node name="Label" type="Label" parent="word generator"]
+offset_left = 144.0
+offset_top = 159.0
+offset_right = 567.0
+offset_bottom = 287.0
+label_settings = SubResource("LabelSettings_c6elb")
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="timeout" from="Timer" to="word generator" method="_on_timer_timeout"]
