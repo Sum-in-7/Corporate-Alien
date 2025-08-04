@@ -3,7 +3,7 @@
 Submission to the GMTK 2025 game jam
 Theme: Loop
 
-This game is a short memory game
+This game is a short memory game where you try to remember as many alien words as you can!
 
 # Game Description
 Welcome to your first day at Galactech Inc.!
