@@ -27,9 +27,13 @@ If you fail to make a clear decision before time ends or  choose incorrectly, yo
 Good luck!
 
 # How to Install
-To try out the game, visit [the game's itch.io page](https://sumimii.itch.io/corporate-alien) for the download link. (Only playable on Windows at the moment)
+To try out the game, visit [the game's itch.io page](https://sumimii.itch.io/corporate-alien) for the download link. (Only available on Windows at the moment)
 
 # Game Screenshots
 <img width="510" height="380" alt="Game Screenshot 1" src="https://github.com/user-attachments/assets/0819eb37-cff9-46e2-bb3d-98411cefe708" />
 <img width="510" height="380" alt="Game Screenshot 2" src="https://github.com/user-attachments/assets/52afbbd3-2614-4724-80a1-94bef7edecbc" />
 <img width="510" height="380" alt="Game Screenshot 3" src="https://github.com/user-attachments/assets/466f25d0-849c-4981-948c-f3b123dd78ff" />
+
+# Game information
+- Made in Godot game engine
+- Whistle sound effect from idabrandao (Freesound)
